@@ -22,23 +22,11 @@ def transpile(path, target_language):
     with open(path, 'r', encoding='utf-8') as f:
         program_string = f.read()
     
-    if target_language == "to_bf":
-        transpiled_program = to_bf(program_string)
-    
-    print(transpiled_program)
-
-
-def help():
-    print("To run a CLAG program: clagy.py run (path)")
-    print("To transpile a CLAG program to brainfuck: clagy.py to_bf (input path) (output path)")
-
+    return to_bf(program_string)
 
 if __name__ == "__main__":
-    if len(argv) == 1:
-        help()
-    elif argv[1] == 'help':
-        help()
-    elif argv[1] == "run":
+    if argv[1] == "run":
         run(argv[2])
-    elif argv[1] == "to_bf":
-        transpile(argv[2], argv[1])
+    elif argv[1] == "to_bf" or argv[1] == "to_clag":
+        program = transpile(argv[2], argv[1])
+        print(program)
